@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Button, FlatList, TextInput, ActivityIndicator } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator } from 'react-native';
 import { MusicPlayer } from '../components/MusicPlayer';  // 引入音乐播放器组件
 import { SearchBar } from '../components/SearchBar';  // 引入搜索框组件
 import { searchMusic } from '../services/navidrome';  // 引入 Navidrome 服务
@@ -32,10 +32,10 @@ const HomeScreen = () => {
 
   return (
     <View style={{ flex: 1, padding: 10 }}>
-      <SearchBar onSearch={handleSearch} />  {/* 搜索框组件 */}
+      <SearchBar onSearch={handleSearch} />
 
-      {loading && <ActivityIndicator size="large" color="#0000ff" />}  {/* 显示加载指示器 */}
-      {error ? <Text style={{ color: 'red' }}>{error}</Text> : null}  {/* 显示错误信息 */}
+      {loading && <ActivityIndicator size="large" color="#0000ff" />}
+      {error ? <Text style={{ color: 'red' }}>{error}</Text> : null}
 
       <FlatList
         data={musicList}

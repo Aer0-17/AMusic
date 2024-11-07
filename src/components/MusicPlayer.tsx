@@ -9,6 +9,7 @@ export const MusicPlayer = ({ url }: { url: string }) => {
 
   // 播放音频
   const playMusic = async () => {
+    if (!url) return;  // 检查 url 是否有效
     const { sound } = await Audio.Sound.createAsync({ uri: url });  // 创建音频实例
     setSound(sound);  // 保存音频实例
     await sound.playAsync();  // 播放音频

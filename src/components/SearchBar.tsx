@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Text } from 'react-native';
+import { View, Text, TextInput, Button } from 'react-native';
 
 // SearchBar 组件
 export const SearchBar = ({ onSearch }: { onSearch: (query: string) => void }) => {
@@ -13,7 +13,10 @@ export const SearchBar = ({ onSearch }: { onSearch: (query: string) => void }) =
         value={query}
         onChangeText={setQuery}  // 更新查询关键字
       />
-      <Button title="Search" onPress={() => onSearch(query)} />  {/* 调用传入的 onSearch 函数 */}
+      <Button 
+        title="Search" 
+        onPress={() => query.trim() && onSearch(query)}  // 仅在查询不为空时触发搜索 
+      />
     </View>
   );
 };
