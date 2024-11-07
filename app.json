@@ -2,7 +2,7 @@
   "expo": {
     "name": "AMusic",
     "slug": "AMusic",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -11,16 +11,6 @@
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
-    },
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "package": "com.aer0_17.AMusic"
     },
     "web": {
       "bundler": "metro",
@@ -32,11 +22,6 @@
     ],
     "experiments": {
       "typedRoutes": true
-    },
-    "extra": {
-      "eas": {
-        "projectId": "1c64e4ab-50a4-4959-af17-2fb05e44058f"
-      }
     }
   }
 }

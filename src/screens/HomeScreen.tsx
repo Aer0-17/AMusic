@@ -18,7 +18,11 @@ const HomeScreen = () => {
 
     try {
       const results = await searchMusic(query);  // 调用 API 搜索音乐
-      setMusicList(results);  // 更新音乐列表
+      if (results) {
+        setMusicList(results);  // 更新音乐列表
+      } else {
+        setError('No music found');
+      }
     } catch (err) {
       setError('Failed to fetch music');  // 捕获异常并显示错误信息
     } finally {
@@ -29,21 +33,21 @@ const HomeScreen = () => {
   return (
     <View style={{ flex: 1, padding: 10 }}>
       <SearchBar onSearch={handleSearch} />  {/* 搜索框组件 */}
-      
-      {loading && <ActivityIndicator size="large" color="#0000ff" />}  {/* 显示加载指示器 */}
-      {error && <Text style={{ color: 'red' }}>{error}</Text>}  {/* 显示错误信息 */}
 
-      <FlatList 
+      {loading && <ActivityIndicator size="large" color="#0000ff" />}  {/* 显示加载指示器 */}
+      {error ? <Text style={{ color: 'red' }}>{error}</Text> : null}  {/* 显示错误信息 */}
+
+      <FlatList
         data={musicList}
         renderItem={({ item }) => (
           <View style={{ marginVertical: 10 }}>
-            <Text style={{ fontWeight: 'bold' }}>{item.title}</Text>  {/* 显示音乐标题 */}
-            <MusicPlayer url={item.url} />  {/* 音乐播放器组件 */}
+            <Text style={{ fontWeight: 'bold' }}>{String(item.title) || 'Unknown Title'}</Text>  {/* 显示音乐标题 */}
+            <MusicPlayer url={item.url || ''} />  {/* 音乐播放器组件 */}
           </View>
         )}
         keyExtractor={(item) => item.id.toString()}  // 使用音乐的 ID 作为 key
         ListEmptyComponent={
-          !loading && !error ? (
+          !loading && !error && musicList.length === 0 ? (
             <Text>No results found</Text>  // 没有搜索到结果时显示
           ) : null
         }
